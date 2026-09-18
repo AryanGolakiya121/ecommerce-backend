@@ -57,6 +57,9 @@ const env = {
     cookie: {
         secure: value.COOKIE_SECURE
     },
+    cloudinaryCloudName: value.CLOUDINARY_CLOUD_NAME,
+    cloudinaryApiKey: value.CLOUDINARY_API_KEY,
+    cloudinaryApiSecret: value.CLOUDINARY_API_SECRET,
     clientUrl: value.CLIENT_URL || "http://localhost:3000",
     smtpHost: value.SMTP_HOST,
     smtpPort: value.SMTP_PORT,
