@@ -35,3 +35,13 @@ export const AddressType = {
     OFFICE: "office",
     OTHER: "other"
 };
+
+export const CategoryStatus = {
+    ACTIVE: "active",
+    INACTIVE: "inactive"
+}
+export const ProductStatus = {
+    DRAFT: "draft",
+    ACTIVE: "active",
+    INACTIVE: "inactive"
+}
