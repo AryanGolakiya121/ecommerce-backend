@@ -30,3 +30,8 @@ export const CouponType = {
     PERCENTAGE: "percentage",
     FIXED: "fixed"
 }
+export const AddressType = {
+    HOME: "home",
+    OFFICE: "office",
+    OTHER: "other"
+};
