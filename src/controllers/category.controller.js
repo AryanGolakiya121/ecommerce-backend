@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Category from "../models/Category.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
+import { cloudinary, uploadImgOnCloudinary } from "../utils/cloudinary.js";
 
 export const addCategory = async(req, res, next) => {
     try {
@@ -156,9 +157,119 @@ export const deleteCategory = async(req, res, next) => {
             throw new ApiError(404, "Category not found");
         }
 
+        if(category.image?.publicId) {
+            try {
+                await cloudinary.uploader.destroy(category.image.publicId);
+            } catch (error) {
+                console.log("Error while deleting category image during category deletion:",error)
+            }
+        }
+
         return ApiResponse(res, 200, "Category deleted successfully", null)
     } catch (error) {
         console.log("Error while deleting category:",error);
+        next(error);
+    }
+}
+
+export const uploadCategoryImage = async(req, res, next) => {
+    try {
+        const { categoryId } = req.params;
+
+        if(!categoryId) {
+            throw new ApiError(400, "Category Id is required");
+        }
+
+        if(!mongoose.Types.ObjectId.isValid(categoryId)) {
+            throw new ApiError(400, "Category id is not valid");
+        }
+
+        if(!req.file) {
+            throw new ApiError(400, "Category image is required");
+        }
+
+        const category = await Category.findById(categoryId);
+
+        if(!category) {
+            throw new ApiError(404, "Category not found");
+        }
+
+        const localFilePath = req.file.path;
+        const folder = "ecommerce/categories";
+        const uploadImage = await uploadImgOnCloudinary(localFilePath, folder);
+
+        if(!uploadImage) {
+            throw new ApiError(500, "Failed to upload category image");
+        }
+
+        const oldImagePublicId = category.image?.publicId;
+
+        category.image = {
+            url: uploadImage?.secure_url,
+            publicId: uploadImage?.public_id
+        }
+
+        await category.save();
+
+        // Delete old category image after database update success
+        if(oldImagePublicId) {
+            try {
+                await cloudinary.uploader.destroy(oldImagePublicId);
+            } catch (error) {
+                console.log("Error while deleting old category Image:",error)
+            }
+        }
+
+        return ApiResponse(res, 200, "Category image upload successfully", category);
+    } catch (error) {
+        console.log("Error while uploading category image:",error);
+        next(error);
+    }
+}
+
+export const deleteCategoryImage = async(req, res, next) => {
+    try {
+        const { categoryId } = req.body;
+
+        if (!categoryId) {
+            throw new ApiError(400, "Category id is required");
+        }
+
+        if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+            throw new ApiError(400, "Category id is not valid");
+        }
+        const category = await Category.findById(categoryId);
+
+        if(!category) {
+            throw new ApiError(404, "Category not found");
+        }
+
+        const publicId = category.image?.publicId;
+
+        if(!publicId) {
+            throw new ApiError(404, "Category does not have image or its publicId")
+        }
+        
+        // Delete image from cloudinary
+        const response = await cloudinary.uploader.destroy(publicId);
+        console.log("Response:",response);
+        
+
+        if(response.result !== "ok" && response.result !== "not found") {
+            throw new ApiError(400, "Failed to delete category image from cloudinary");
+        }
+
+        // Remove image from database
+
+        category.image = {
+            url: null,
+            publicId: null
+        }
+        await category.save();
+
+        return ApiResponse(res, 200, "Category image deleted successfully", null);
+    } catch (error) {
+        console.log("Error while deleting category image:",error);
         next(error);
     }
 }

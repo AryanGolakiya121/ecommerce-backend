@@ -2,7 +2,7 @@ import User from "../models/User.js"
 import ApiError from "../utils/ApiError.js"
 import { comparePassword, encrypt } from "../utils/helper.js";
 import ApiResponse from "../utils/ApiResponse.js";
-import { cloudinary, uploadAvatarImgOnCloudinary } from "../utils/cloudinary.js";
+import { cloudinary, uploadImgOnCloudinary } from "../utils/cloudinary.js";
 
 
 export const getMyProfile = async(req, res, next ) => {
@@ -103,7 +103,7 @@ export const uploadAvatarImage = async(req, res, next) => {
         // Upload new image to cloudinary
         const localFilePath = req.file.path;
         
-        const uploadOnCloud = await uploadAvatarImgOnCloudinary(localFilePath);
+        const uploadOnCloud = await uploadImgOnCloudinary(localFilePath, "ecommerce/avatars");
 
         if(!uploadOnCloud) {
             throw new ApiError(500, "Failed to upload avatar image on cloudinary")

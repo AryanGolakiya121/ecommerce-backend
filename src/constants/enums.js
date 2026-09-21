@@ -45,3 +45,10 @@ export const ProductStatus = {
     ACTIVE: "active",
     INACTIVE: "inactive"
 }
+
+export const UploadType = {
+    CATEGORY: "category",
+    PRODUCT: "product",
+    BRAND: "brand",
+    BANNER: "banner"
+};

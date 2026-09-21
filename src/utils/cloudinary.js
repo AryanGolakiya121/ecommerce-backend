@@ -8,7 +8,7 @@ cloudinary.config({
     api_secret: env.cloudinaryApiSecret
 })
 
-export const uploadAvatarImgOnCloudinary = async(localFilePath) => {
+export const uploadImgOnCloudinary = async(localFilePath, folder) => {
     try {
         if(!localFilePath) {
             console.log("Could not find the path");
@@ -20,7 +20,7 @@ export const uploadAvatarImgOnCloudinary = async(localFilePath) => {
             unique_filename: false,
             use_filename: true,
             resource_type: "image",
-            folder: "ecommerce/avatars"
+            folder: folder,
         })
         
         // Remove temporary local file after successful upload
