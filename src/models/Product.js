@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { ProductStatus } from "../constants/enums.js";
 
-const productSchema = new mongoose.model(
+const productSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -69,6 +69,11 @@ const productSchema = new mongoose.model(
             type: String,
             enum: Object.values(ProductStatus),
             default: ProductStatus.DRAFT
+        },
+        isFeatured: {
+            type: Boolean,
+            default: false,
+            index: true
         }
     },
     {

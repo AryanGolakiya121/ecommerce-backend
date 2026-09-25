@@ -1,6 +1,7 @@
 import multer from "multer";
 import fs from "node:fs";
 import path from "node:path";
+import ApiError from "../utils/ApiError.js";
 
 
 const storage = multer.diskStorage({
@@ -37,7 +38,7 @@ const fileFilter = (req, file, cb) => {
     if(alloweTypes.includes(file.mimetype)) {
         cb(null, true)
     } else {
-        cb(new Error("Only JPG, PNG and WEBP images are allowed"));
+        cb(new ApiError(400, "Only JPG, JPEG, PNG or WEBP images are allowed"));
     }
 };
 
