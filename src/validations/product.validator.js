@@ -172,3 +172,61 @@ export const deleteProductImageValidator = Joi.object({
         .trim()
         .required(),
 })
+
+
+
+export const getCustomerProductListValidator = Joi.object({
+    page: Joi.number()
+        .integer()
+        .min(1)
+        .default(1),
+    limit: Joi.number()
+        .integer()
+        .min(1)
+        .max(100)
+        .default(10),
+    search: Joi.string()
+        .trim()
+        .allow("")
+        .optional(),
+    categoryId: Joi.string()
+        .trim()
+        .allow("")
+        .optional(),
+    sortBy: Joi.string()
+        .valid("name", "price", "stock", "createdAt", "updatedAt")
+        .default("createdAt")
+        .allow(""),
+    sortOrder: Joi.string()
+        .valid("asc", "desc")
+        .default("desc")
+        .allow(""),
+    brand: Joi.string()
+        .trim()
+        .max(100)
+        .allow("")
+        .optional(),
+    minPrice: Joi.number()
+        .min(0)
+        .optional(),
+    maxPrice: Joi.number()
+        .min(0)
+        .when("minPrice", {
+            is: Joi.exist(),
+            then: Joi.number().min(Joi.ref("minPrice"))
+        })
+        .optional(),
+})
+
+export const getCustomerFeaturedProductValidator = Joi.object({
+    page: Joi.number()
+        .integer()
+        .min(1)
+        .default(1),
+
+    limit: Joi.number()
+        .integer()
+        .min(1)
+        .max(50)
+        .default(10)
+})

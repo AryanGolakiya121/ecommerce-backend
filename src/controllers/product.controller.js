@@ -428,3 +428,145 @@ export const deleteProductImage = async(req, res, next) => {
         next(error);
     }
 }
+
+
+export const getProductForCustomer = async(req, res, next) => {
+    try {
+        const {
+            page,
+            limit,
+            sortBy,
+            sortOrder,
+            search,
+            categoryId,
+            brand,
+            minPrice,
+            maxPrice,
+        } = req.body;
+
+        const filter = { status: ProductStatus.ACTIVE };
+        const currentPage = Number(page) || 1;
+        const pageSize = Number(limit) || 10;
+
+        const skip = ( currentPage - 1) * pageSize;
+
+        if (search) {
+            filter.$or = [
+                { name: { $regex: search, $options: "i" } },
+                { sku:  { $regex: search, $options: "i" } },
+                { slug: { $regex: search, $options: "i" } }
+            ]
+        }
+
+        if (categoryId) {
+            if (!mongoose.Types.ObjectId.isValid(categoryId)) {
+                throw new ApiError(400, "Category id is not a valid id");
+            }
+            filter.categoryId = categoryId;
+        }
+        if (brand) filter.brand = { $regex: `^${brand}$`, $options: "i" }
+
+        if (minPrice !== undefined || maxPrice !== undefined) {
+            filter.price = {};
+            if (minPrice !== undefined) filter.price.$gte = minPrice;
+            if (maxPrice !== undefined) filter.price.$lte = maxPrice
+        }
+
+        // Sorting
+        const sortField = sortBy || "createdAt";
+        const sortDirection = sortOrder === "asc" ? 1 : -1;
+
+        const [products, totalCount] = await Promise.all([
+            Product.find(filter)
+                .select("-__v -updatedAt")
+                .sort({ [sortField]: sortDirection} )
+                .skip(skip)
+                .limit(pageSize)
+                .populate("categoryId", "name slug")
+                .lean(),
+
+            Product.countDocuments(filter)
+        ]);
+
+        const data = {
+            totalCount,
+            totalPages: Math.ceil(totalCount / pageSize),
+            currentPage,
+            limit: pageSize,
+            products
+        }
+
+        return ApiResponse(res, 200, "Product fetcged successfully", data)
+    } catch (error) {
+        console.log("Error while get product for customer:",error);
+        next(error);
+    }
+}
+
+export const getProductDetailforCustomer = async(req, res, next) => {
+    try {
+        const { productId } = req.body;
+
+        // Check productId
+        if(!mongoose.Types.ObjectId.isValid(productId)) {
+            throw new ApiError(400, "Product id is not a valid id")
+        }
+
+        const product = await Product.findOne({
+            _id: productId,
+            status: ProductStatus.ACTIVE
+        }).select("-__v -updatedAt").populate("categoryId", "name slug").select("-__v").lean();
+
+        if(!product) {
+            throw new ApiError(404, "Product not found or is no longer available")
+        }
+        const isAvailable = product.stock > 0;
+
+        const data = {
+            ...product,
+            isAvailable
+        }
+        return ApiResponse(res, 200, "Product fetched successfully", data);
+    } catch (error) {
+        console.log("Error while fetching product detail:",error)
+        next(error);
+    }
+}
+
+export const getFeaturedProductsForCustomer = async(req, res, next) => {
+    try {
+        const { page, limit } = req.body;
+
+        const currentPage = Number(page) || 1;
+        const pageSize = Number(limit) || 10;
+
+        const skip = (currentPage - 1) * pageSize;
+
+        const filter = { status: ProductStatus.ACTIVE, isFeatured: true };
+
+        const [products, totalCount] = await Promise.all([
+            Product.find(filter)
+                .select("-__v -updatedAt")
+                .populate("categoryId", "name slug")
+                .sort({ createdAt: -1} )
+                .skip(skip)
+                .limit(pageSize)
+                .lean(),
+
+            Product.countDocuments(filter)
+        ]);
+
+        const data = {
+            totalCount,
+            totalPages: Math.ceil(totalCount / pageSize),
+            currentPage,
+            limit: pageSize,
+            products
+        } 
+
+        return ApiResponse(res, 200, "Featured products fetched successfully", data);
+    } catch (error) {
+        console.log("Error while fetching featured products:",error)
+        next(error);  
+    }
+}
