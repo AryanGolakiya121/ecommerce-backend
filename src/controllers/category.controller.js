@@ -3,6 +3,7 @@ import Category from "../models/Category.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import { cloudinary, uploadImgOnCloudinary } from "../utils/cloudinary.js";
+import Product from "../models/Product.js";
 
 export const addCategory = async(req, res, next) => {
     try {
@@ -150,6 +151,12 @@ export const deleteCategory = async(req, res, next) => {
 
         if (!mongoose.Types.ObjectId.isValid(categoryId)) {
             throw new ApiError(400, "Category id is not valid");
+        }
+
+        const productExists = await Product.exists({ categoryId });
+
+        if(productExists) {
+            throw new ApiError(400, "Cannot delete category because products are associated with it")
         }
         const category = await Category.findByIdAndDelete(categoryId);
 
