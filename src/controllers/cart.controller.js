@@ -4,32 +4,9 @@ import Product from "../models/Product.js";
 import ApiError from "../utils/ApiError.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import mongoose from "mongoose";
+import { recalculateCartTotals } from "../utils/helper.js";
 
 
-const recalculateCartTotals = (cart) => {
-    let totalItems = 0;
-    let subTotal = 0;
-    let itemDiscount = 0;
-
-    cart.items.forEach((item) => {
-        totalItems += item.quantity;
-        subTotal += item.unitPrice * item.quantity;
-        itemDiscount += item.discount; // Kept for display (like "you saved ₹X total")
-    });
-
-    cart.totalItems = totalItems;
-    cart.subTotal = subTotal;
-    cart.itemDiscount = itemDiscount;
-
-    cart.grandTotal = 
-        subTotal - 
-        cart.couponDiscount -   // actual discount (coupon applied at checkout) 
-        cart.offerDiscount +    // actual discount (cart/order-level offer)
-        cart.shippingCharge + 
-        cart.taxAmount;
-
-    return cart;
-}
 
 export const addProductToCart = async(req, res, next) => {
     try {

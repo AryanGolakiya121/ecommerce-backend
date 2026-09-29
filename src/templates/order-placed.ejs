@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed - <%= orderNumber %></title>
+</head>
+
+<body style="
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+">
+
+<table
+    width="100%"
+    cellpadding="0"
+    cellspacing="0"
+    border="0"
+    style="background-color: #f4f6f8; padding: 30px 15px;"
+>
+    <tr>
+        <td align="center">
+
+            <!-- Main Container -->
+            <table
+                width="650"
+                cellpadding="0"
+                cellspacing="0"
+                border="0"
+                style="
+                    max-width: 650px;
+                    width: 100%;
+                    background-color: #ffffff;
+                    border-radius: 10px;
+                    overflow: hidden;
+                "
+            >
+
+                <!-- ================= HEADER ================= -->
+
+                <tr>
+                    <td style="
+                        background-color: #111827;
+                        padding: 25px 30px;
+                        text-align: center;
+                    ">
+
+                        <h1 style="
+                            margin: 0;
+                            color: #ffffff;
+                            font-size: 26px;
+                            font-weight: 700;
+                        ">
+                            Your Store
+                        </h1>
+
+                        <p style="
+                            margin: 6px 0 0;
+                            color: #d1d5db;
+                            font-size: 13px;
+                        ">
+                            Thank you for shopping with us
+                        </p>
+
+                    </td>
+                </tr>
+
+
+                <!-- ================= SUCCESS ================= -->
+
+                <tr>
+                    <td style="
+                        padding: 35px 30px 20px;
+                        text-align: center;
+                    ">
+
+                        <div style="
+                            width: 55px;
+                            height: 55px;
+                            line-height: 55px;
+                            margin: 0 auto 15px;
+                            border-radius: 50%;
+                            background-color: #dcfce7;
+                            color: #16a34a;
+                            font-size: 28px;
+                            font-weight: bold;
+                        ">
+                            ✓
+                        </div>
+
+                        <h2 style="
+                            margin: 0;
+                            color: #111827;
+                            font-size: 24px;
+                        ">
+                            Order Placed Successfully!
+                        </h2>
+
+                        <p style="
+                            margin: 10px 0 0;
+                            color: #6b7280;
+                            font-size: 15px;
+                            line-height: 24px;
+                        ">
+                            Hi <strong><%= customerName %></strong>,
+                            thank you for your order.
+                            We've received your order and will start processing it shortly.
+                        </p>
+
+                    </td>
+                </tr>
+
+
+                <!-- ================= ORDER INFORMATION ================= -->
+
+                <tr>
+                    <td style="padding: 15px 30px 25px;">
+
+                        <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
+                            style="
+                                background-color: #f9fafb;
+                                border: 1px solid #e5e7eb;
+                                border-radius: 8px;
+                            "
+                        >
+
+                            <tr>
+                                <td style="padding: 18px 20px;">
+
+                                    <table
+                                        width="100%"
+                                        cellpadding="0"
+                                        cellspacing="0"
+                                    >
+
+                                        <!-- Row 1 -->
+
+                                        <tr>
+
+                                            <td
+                                                width="50%"
+                                                style="padding-bottom: 15px;"
+                                            >
+
+                                                <div style="
+                                                    color: #6b7280;
+                                                    font-size: 11px;
+                                                    margin-bottom: 5px;
+                                                ">
+                                                    ORDER NUMBER
+                                                </div>
+
+                                                <div style="
+                                                    color: #111827;
+                                                    font-size: 14px;
+                                                    font-weight: 700;
+                                                ">
+                                                    <%= orderNumber %>
+                                                </div>
+
+                                            </td>
+
+
+                                            <td
+                                                width="50%"
+                                                style="padding-bottom: 15px;"
+                                            >
+
+                                                <div style="
+                                                    color: #6b7280;
+                                                    font-size: 11px;
+                                                    margin-bottom: 5px;
+                                                ">
+                                                    ORDER STATUS
+                                                </div>
+
+                                                <div style="
+                                                    color: #16a34a;
+                                                    font-size: 14px;
+                                                    font-weight: 700;
+                                                    text-transform: capitalize;
+                                                ">
+                                                    <%= orderStatus %>
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+
+                                        <!-- Row 2 -->
+
+                                        <tr>
+
+                                            <td width="50%">
+
+                                                <div style="
+                                                    color: #6b7280;
+                                                    font-size: 11px;
+                                                    margin-bottom: 5px;
+                                                ">
+                                                    PAYMENT METHOD
+                                                </div>
+
+                                                <div style="
+                                                    color: #111827;
+                                                    font-size: 14px;
+                                                    font-weight: 600;
+                                                    text-transform: uppercase;
+                                                ">
+                                                    <%= paymentMethod %>
+                                                </div>
+
+                                            </td>
+
+
+                                            <td width="50%">
+
+                                                <div style="
+                                                    color: #6b7280;
+                                                    font-size: 11px;
+                                                    margin-bottom: 5px;
+                                                ">
+                                                    TOTAL ITEMS
+                                                </div>
+
+                                                <div style="
+                                                    color: #111827;
+                                                    font-size: 14px;
+                                                    font-weight: 600;
+                                                ">
+                                                    <%= totalItems %>
+                                                </div>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </td>
+                </tr>
+
+
+                <!-- ================= ORDER ITEMS ================= -->
+
+                <tr>
+                    <td style="padding: 0 30px 15px;">
+
+                        <h3 style="
+                            margin: 0;
+                            color: #111827;
+                            font-size: 18px;
+                        ">
+                            Order Items
+                        </h3>
+
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="padding: 0 30px 25px;">
+
+                        <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
+                            style="
+                                border: 1px solid #e5e7eb;
+                                border-radius: 8px;
+                                overflow: hidden;
+                            "
+                        >
+
+                            <% items.forEach(function(item) { %>
+
+                                <!-- Product -->
+
+                                <tr>
+
+                                    <!-- Image -->
+
+                                    <td
+                                        width="85"
+                                        valign="top"
+                                        style="padding: 15px 10px 15px 15px;"
+                                    >
+
+                                        <% if (item.productImage) { %>
+
+                                            <img
+                                                src="<%= item.productImage %>"
+                                                alt="<%= item.productName %>"
+                                                width="65"
+                                                height="65"
+                                                style="
+                                                    display: block;
+                                                    width: 65px;
+                                                    height: 65px;
+                                                    object-fit: cover;
+                                                    border-radius: 6px;
+                                                    border: 1px solid #e5e7eb;
+                                                "
+                                            />
+
+                                        <% } else { %>
+
+                                            <div style="
+                                                width: 65px;
+                                                height: 65px;
+                                                background-color: #f3f4f6;
+                                                border-radius: 6px;
+                                                text-align: center;
+                                                line-height: 65px;
+                                                color: #9ca3af;
+                                                font-size: 10px;
+                                            ">
+                                                No Image
+                                            </div>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- Product Information -->
+
+                                    <td
+                                        valign="top"
+                                        style="padding: 15px 10px;"
+                                    >
+
+                                        <div style="
+                                            color: #111827;
+                                            font-size: 14px;
+                                            font-weight: 700;
+                                            margin-bottom: 7px;
+                                        ">
+                                            <%= item.productName %>
+                                        </div>
+
+
+                                        <div style="
+                                            color: #6b7280;
+                                            font-size: 12px;
+                                            margin-bottom: 8px;
+                                        ">
+                                            Quantity:
+                                            <strong><%= item.quantity %></strong>
+                                        </div>
+
+
+                                        <!-- Pricing -->
+
+                                        <% 
+                                            const originalUnitPrice =
+                                                item.unitPrice +
+                                                (item.discount / item.quantity);
+                                        %>
+
+
+                                        <% if (item.discount > 0) { %>
+
+                                            <div style="
+                                                font-size: 12px;
+                                                color: #9ca3af;
+                                                text-decoration: line-through;
+                                                margin-bottom: 3px;
+                                            ">
+                                                Original Price:
+                                                ₹<%= originalUnitPrice.toFixed(2) %>
+                                            </div>
+
+
+                                            <div style="
+                                                font-size: 13px;
+                                                color: #111827;
+                                                font-weight: 700;
+                                                margin-bottom: 3px;
+                                            ">
+                                                Your Price:
+                                                ₹<%= item.unitPrice.toFixed(2) %>
+                                            </div>
+
+
+                                            <div style="
+                                                font-size: 12px;
+                                                color: #16a34a;
+                                                font-weight: 600;
+                                            ">
+                                                You Save:
+                                                ₹<%= (item.discount / item.quantity).toFixed(2) %>
+                                                / unit
+                                            </div>
+
+                                        <% } else { %>
+
+                                            <div style="
+                                                font-size: 13px;
+                                                color: #111827;
+                                                font-weight: 700;
+                                            ">
+                                                Price:
+                                                ₹<%= item.unitPrice.toFixed(2) %>
+                                            </div>
+
+                                        <% } %>
+
+                                    </td>
+
+
+                                    <!-- Product Total -->
+
+                                    <td
+                                        width="110"
+                                        valign="middle"
+                                        align="right"
+                                        style="padding: 15px 15px 15px 10px;"
+                                    >
+
+                                        <div style="
+                                            color: #111827;
+                                            font-size: 14px;
+                                            font-weight: 700;
+                                        ">
+                                            ₹<%= item.finalPrice.toFixed(2) %>
+                                        </div>
+
+                                        <div style="
+                                            margin-top: 4px;
+                                            color: #9ca3af;
+                                            font-size: 11px;
+                                        ">
+                                            Item Total
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- Divider -->
+
+                                <tr>
+                                    <td
+                                        colspan="3"
+                                        style="
+                                            border-bottom: 1px solid #e5e7eb;
+                                            height: 1px;
+                                            padding: 0;
+                                        "
+                                    ></td>
+                                </tr>
+
+                            <% }); %>
+
+                        </table>
+
+                    </td>
+                </tr>
+
+
+                <!-- ================= SAVINGS MESSAGE ================= -->
+
+                <% if (itemDiscount > 0) { %>
+
+                    <tr>
+                        <td style="padding: 0 30px 20px;">
+
+                            <table
+                                width="100%"
+                                cellpadding="0"
+                                cellspacing="0"
+                                border="0"
+                                style="
+                                    background-color: #f0fdf4;
+                                    border: 1px solid #bbf7d0;
+                                    border-radius: 8px;
+                                "
+                            >
+
+                                <tr>
+
+                                    <td
+                                        width="45"
+                                        align="center"
+                                        style="padding: 14px 5px 14px 15px;"
+                                    >
+                                        <span style="
+                                            font-size: 22px;
+                                        ">
+                                            🎉
+                                        </span>
+                                    </td>
+
+                                    <td style="padding: 14px 15px 14px 5px;">
+
+                                        <div style="
+                                            color: #166534;
+                                            font-size: 14px;
+                                            font-weight: 700;
+                                        ">
+                                            You saved ₹<%= itemDiscount.toFixed(2) %>
+                                            on this order
+                                        </div>
+
+                                        <div style="
+                                            margin-top: 4px;
+                                            color: #4d7c5b;
+                                            font-size: 12px;
+                                        ">
+                                            Your product prices already include these savings.
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </td>
+                    </tr>
+
+                <% } %>
+
+
+                <!-- ================= ORDER SUMMARY ================= -->
+
+                <tr>
+                    <td style="padding: 0 30px 30px;">
+
+                        <h3 style="
+                            margin: 0 0 15px;
+                            color: #111827;
+                            font-size: 18px;
+                        ">
+                            Order Summary
+                        </h3>
+
+
+                        <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
+                        >
+
+                            <!-- Subtotal -->
+
+                            <tr>
+
+                                <td style="
+                                    padding: 7px 0;
+                                    color: #6b7280;
+                                    font-size: 14px;
+                                ">
+                                    Subtotal
+                                </td>
+
+                                <td
+                                    align="right"
+                                    style="
+                                        padding: 7px 0;
+                                        color: #111827;
+                                        font-size: 14px;
+                                        font-weight: 600;
+                                    "
+                                >
+                                    ₹<%= subTotal.toFixed(2) %>
+                                </td>
+
+                            </tr>
+
+
+                            <!-- Coupon -->
+
+                            <% if (couponDiscount > 0) { %>
+
+                                <tr>
+
+                                    <td style="
+                                        padding: 7px 0;
+                                        color: #16a34a;
+                                        font-size: 14px;
+                                    ">
+                                        Coupon Discount
+                                    </td>
+
+                                    <td
+                                        align="right"
+                                        style="
+                                            padding: 7px 0;
+                                            color: #16a34a;
+                                            font-size: 14px;
+                                            font-weight: 600;
+                                        "
+                                    >
+                                        -₹<%= couponDiscount.toFixed(2) %>
+                                    </td>
+
+                                </tr>
+
+                            <% } %>
+
+
+                            <!-- Offer -->
+
+                            <% if (offerDiscount > 0) { %>
+
+                                <tr>
+
+                                    <td style="
+                                        padding: 7px 0;
+                                        color: #16a34a;
+                                        font-size: 14px;
+                                    ">
+                                        Offer Discount
+                                    </td>
+
+                                    <td
+                                        align="right"
+                                        style="
+                                            padding: 7px 0;
+                                            color: #16a34a;
+                                            font-size: 14px;
+                                            font-weight: 600;
+                                        "
+                                    >
+                                        -₹<%= offerDiscount.toFixed(2) %>
+                                    </td>
+
+                                </tr>
+
+                            <% } %>
+
+
+                            <!-- Shipping -->
+
+                            <tr>
+
+                                <td style="
+                                    padding: 7px 0;
+                                    color: #6b7280;
+                                    font-size: 14px;
+                                ">
+                                    Shipping
+                                </td>
+
+                                <td
+                                    align="right"
+                                    style="
+                                        padding: 7px 0;
+                                        color: #111827;
+                                        font-size: 14px;
+                                    "
+                                >
+                                    ₹<%= shippingCharge.toFixed(2) %>
+                                </td>
+
+                            </tr>
+
+
+                            <!-- Tax -->
+
+                            <tr>
+
+                                <td style="
+                                    padding: 7px 0;
+                                    color: #6b7280;
+                                    font-size: 14px;
+                                ">
+                                    Tax
+                                </td>
+
+                                <td
+                                    align="right"
+                                    style="
+                                        padding: 7px 0;
+                                        color: #111827;
+                                        font-size: 14px;
+                                    "
+                                >
+                                    ₹<%= taxAmount.toFixed(2) %>
+                                </td>
+
+                            </tr>
+
+
+                            <!-- Divider -->
+
+                            <tr>
+                                <td
+                                    colspan="2"
+                                    style="
+                                        border-top: 1px solid #e5e7eb;
+                                        padding-top: 15px;
+                                    "
+                                ></td>
+                            </tr>
+
+
+                            <!-- Grand Total -->
+
+                            <tr>
+
+                                <td style="
+                                    padding: 5px 0;
+                                    color: #111827;
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                ">
+                                    Order Total
+                                </td>
+
+                                <td
+                                    align="right"
+                                    style="
+                                        padding: 5px 0;
+                                        color: #111827;
+                                        font-size: 20px;
+                                        font-weight: 700;
+                                    "
+                                >
+                                    ₹<%= grandTotal.toFixed(2) %>
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+                </tr>
+
+
+                <!-- ================= SHIPPING ADDRESS ================= -->
+
+                <% if (shippingAddress) { %>
+
+                    <tr>
+
+                        <td style="padding: 0 30px 30px;">
+
+                            <h3 style="
+                                margin: 0 0 15px;
+                                color: #111827;
+                                font-size: 18px;
+                            ">
+                                Shipping Address
+                            </h3>
+
+
+                            <table
+                                width="100%"
+                                cellpadding="0"
+                                cellspacing="0"
+                                border="0"
+                                style="
+                                    background-color: #f9fafb;
+                                    border: 1px solid #e5e7eb;
+                                    border-radius: 8px;
+                                "
+                            >
+
+                                <tr>
+
+                                    <td style="padding: 18px 20px;">
+
+                                        <strong style="
+                                            color: #111827;
+                                            font-size: 14px;
+                                        ">
+                                            <%= shippingAddress.fullName %>
+                                        </strong>
+
+
+                                        <p style="
+                                            margin: 7px 0;
+                                            color: #6b7280;
+                                            font-size: 13px;
+                                            line-height: 20px;
+                                        ">
+
+                                            <%= shippingAddress.addressLine1 %>
+
+                                            <% if (shippingAddress.addressLine2) { %>
+                                                <br />
+                                                <%= shippingAddress.addressLine2 %>
+                                            <% } %>
+
+                                            <br />
+
+                                            <%= shippingAddress.city %>,
+                                            <%= shippingAddress.state %>
+                                            - <%= shippingAddress.postalCode %>
+
+                                            <br />
+
+                                            <%= shippingAddress.country %>
+
+                                        </p>
+
+
+                                        <% if (shippingAddress.landmark) { %>
+
+                                            <p style="
+                                                margin: 5px 0;
+                                                color: #6b7280;
+                                                font-size: 13px;
+                                            ">
+                                                Landmark:
+                                                <%= shippingAddress.landmark %>
+                                            </p>
+
+                                        <% } %>
+
+
+                                        <p style="
+                                            margin: 5px 0 0;
+                                            color: #6b7280;
+                                            font-size: 13px;
+                                        ">
+                                            Phone:
+                                            <%= shippingAddress.phone %>
+                                        </p>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </td>
+
+                    </tr>
+
+                <% } %>
+
+
+                <!-- ================= PAYMENT INFORMATION ================= -->
+
+                <tr>
+
+                    <td style="padding: 0 30px 30px;">
+
+                        <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            border="0"
+                            style="
+                                background-color: #f9fafb;
+                                border: 1px solid #e5e7eb;
+                                border-radius: 8px;
+                            "
+                        >
+
+                            <tr>
+
+                                <td style="padding: 18px 20px;">
+
+                                    <div style="
+                                        color: #6b7280;
+                                        font-size: 11px;
+                                        margin-bottom: 5px;
+                                    ">
+                                        PAYMENT METHOD
+                                    </div>
+
+                                    <div style="
+                                        color: #111827;
+                                        font-size: 14px;
+                                        font-weight: 700;
+                                        text-transform: uppercase;
+                                    ">
+                                        <%= paymentMethod %>
+                                    </div>
+
+
+                                    <div style="
+                                        margin-top: 12px;
+                                        color: #6b7280;
+                                        font-size: 12px;
+                                    ">
+                                        Payment Status
+                                    </div>
+
+                                    <div style="
+                                        margin-top: 4px;
+                                        color: #16a34a;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        text-transform: capitalize;
+                                    ">
+                                        <%= paymentStatus %>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- ================= BOTTOM MESSAGE ================= -->
+
+                <tr>
+
+                    <td style="
+                        padding: 0 30px 30px;
+                        text-align: center;
+                    ">
+
+                        <p style="
+                            margin: 0;
+                            color: #6b7280;
+                            font-size: 13px;
+                            line-height: 21px;
+                        ">
+                            We'll send you another email when your order is shipped.
+                        </p>
+
+                        <p style="
+                            margin: 8px 0 0;
+                            color: #6b7280;
+                            font-size: 13px;
+                            line-height: 21px;
+                        ">
+                            If you have any questions about your order,
+                            please contact our support team.
+                        </p>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- ================= FOOTER ================= -->
+
+                <tr>
+
+                    <td style="
+                        background-color: #f9fafb;
+                        border-top: 1px solid #e5e7eb;
+                        padding: 20px 30px;
+                        text-align: center;
+                    ">
+
+                        <p style="
+                            margin: 0;
+                            color: #111827;
+                            font-size: 14px;
+                            font-weight: 600;
+                        ">
+                            Your Store
+                        </p>
+
+                        <p style="
+                            margin: 6px 0 0;
+                            color: #9ca3af;
+                            font-size: 11px;
+                            line-height: 18px;
+                        ">
+                            This is an automated email.
+                            Please do not reply directly to this email.
+                        </p>
+
+                        <p style="
+                            margin: 8px 0 0;
+                            color: #9ca3af;
+                            font-size: 11px;
+                        ">
+                            © <%= new Date().getFullYear() %>
+                            Your Store. All rights reserved.
+                        </p>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

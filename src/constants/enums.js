@@ -16,7 +16,8 @@ export const OrderStatus = {
     PROCESSING: "processing",
     SHIPPED: "shipped",
     DELIVERED: "delivered",
-    CANCELLED: "cancelled"
+    CANCELLED: "cancelled",
+    RETURNED: "returned"
 }
 
 export const PaymentStatus = {
@@ -51,4 +52,12 @@ export const UploadType = {
     PRODUCT: "product",
     BRAND: "brand",
     BANNER: "banner"
+};
+
+export const PaymentMethod = {
+    COD: "cod",
+    CARD: "card",
+    UPI: "upi",
+    WALLET: "wallet",
+    NETBANKING: "netbanking"
 };
